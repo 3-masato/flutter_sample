@@ -94,6 +94,8 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: () => {print("pressed floating button")},
         child: const Icon(Icons.grade),
       ),
+      drawer: const Drawer(child: Center(child: Text("Drawer"))),
+      endDrawer: const Drawer(child: Center(child: Text("EndDrawer"))),
     );
   }
 }
