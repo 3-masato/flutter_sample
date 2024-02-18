@@ -57,18 +57,15 @@ class MyHomePage extends StatefulWidget {
 // import、main関数、MyApp、MyHomePageはデフォルトから変更がないため省略
 
 class _MyHomePageState extends State<MyHomePage> {
-  static int _counter = 0;
+  static String isEvenOrOdd(count) => count % 2 == 0 ? "even" : "odd";
 
-  static String isEvenOrOdd(count) {
-    return count % 2 == 0 ? "even" : "odd";
-  }
+  int _counter = 0;
 
-  String _type = isEvenOrOdd(_counter);
+  String get _type => isEvenOrOdd(_counter);
 
   void incrementCounter() {
     setState(() {
       _counter++;
-      _type = isEvenOrOdd(_counter);
     });
   }
 
