@@ -57,41 +57,41 @@ class MyHomePage extends StatefulWidget {
 // import、main関数、MyApp、MyHomePageはデフォルトから変更がないため省略
 
 class _MyHomePageState extends State<MyHomePage> {
+  static int _counter = 0;
+
+  static String isEvenOrOdd(count) {
+    return count % 2 == 0 ? "even" : "odd";
+  }
+
+  String _type = isEvenOrOdd(_counter);
+
+  void incrementCounter() {
+    setState(() {
+      _counter++;
+      _type = isEvenOrOdd(_counter);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(children: const [
+        title: const Row(children: [
           Icon(Icons.create),
           Text("title"),
         ]),
       ),
-      body: Column(children: [
-        const Text("Hello world"),
-        TextButton(
-          onPressed: () => {print("pressed text button")},
-          child: const Text("button"),
+      body: Center(
+          child: Column(children: [
+        const Text("You have pushed the button this many times:"),
+        Text(
+          "$_counter",
+          style: Theme.of(context).textTheme.headlineLarge,
         ),
-        Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: const [
-          Icon(
-            Icons.favorite,
-            color: Colors.pink,
-            size: 24.0,
-          ),
-          Icon(
-            Icons.audiotrack,
-            color: Colors.green,
-            size: 30.0,
-          ),
-          Icon(
-            Icons.beach_access,
-            color: Colors.blue,
-            size: 36.0,
-          ),
-        ]),
-      ]),
+        Text(_type, style: const TextStyle(fontSize: 20, color: Colors.red))
+      ])),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => {print("pressed floating button")},
+        onPressed: incrementCounter,
         child: const Icon(Icons.grade),
       ),
       drawer: const Drawer(child: Center(child: Text("Drawer"))),
