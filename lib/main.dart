@@ -54,7 +54,21 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-// import、main関数、MyApp、MyHomePageはデフォルトから変更がないため省略
+class OtherPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: TextButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: const Text('back'),
+        ),
+      ),
+    );
+  }
+}
 
 class _MyHomePageState extends State<MyHomePage> {
   static String isEvenOrOdd(count) => count % 2 == 0 ? "even" : "odd";
@@ -85,7 +99,16 @@ class _MyHomePageState extends State<MyHomePage> {
           "$_counter",
           style: Theme.of(context).textTheme.headlineLarge,
         ),
-        Text(_type, style: const TextStyle(fontSize: 20, color: Colors.red))
+        Text(_type, style: const TextStyle(fontSize: 20, color: Colors.red)),
+        TextButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) {
+                  return OtherPage();
+                }),
+              );
+            },
+            child: const Text("go to other page"))
       ])),
       floatingActionButton: FloatingActionButton(
         onPressed: incrementCounter,
